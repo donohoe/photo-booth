@@ -16,8 +16,10 @@ var app = {
 		var items = data.response || false;
 		if (items) {
 
+			this.scrollBarWidth = this.measureScrollBar();
+
 			var html = "";
-			var realWidth = (window.innerWidth - this.measureScrollBar());
+			var realWidth = (window.innerWidth - this.scrollBarWidth);
 			var numPerRow = parseInt(realWidth / 250, 10);
 			var w = parseInt((realWidth / numPerRow), 10) + "px";
 			var h = w;
@@ -84,9 +86,11 @@ var app = {
 	},
 
 	addEvents: function() {
+		var self = this;
 		window.addEventListener('resize', function(event) {
-			var numPerRow = parseInt(window.innerWidth / 250, 10);
-			var w = (window.innerWidth / numPerRow) + "px";
+			var realWidth = (window.innerWidth - self.scrollBarWidth);
+			var numPerRow = parseInt(realWidth / 250, 10);
+			var w = parseInt((realWidth / numPerRow), 10) + "px";
 			var links = document.querySelectorAll("a.link");
 			var len = links.length;
 			for (var i=0; i<len; i++) {
@@ -114,7 +118,7 @@ var app = {
 
 	randomEffect: function() {
 		var effects = [ 'fadeIn', 'fadeInUp', 'fadeInLeft', 'fadeInRight' ];
-		return effects[Math.floor(Math.random()*effects.length)];
+		return effects[Math.floor(Math.random() * effects.length)];
 	},
 
 	randomIntFromInterval: function (min,max) {
@@ -174,7 +178,7 @@ var app = {
 		document.body.appendChild(scrollDiv);
 		var scrollBarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
 		document.body.removeChild(scrollDiv);
-		return scrollBarWidth;
+		return scrollBarWidth || 15;
 	}
 };
 
