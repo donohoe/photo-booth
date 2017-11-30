@@ -10,7 +10,7 @@
 	* https://donohoe.io/project/feeds/photo-booth/feed.js
 
 	Relies on CRON to run daily. Example:
-	  00 00 * * * wget -q -O /dev/null http://example.com/generate.php
+	  00 00 * * * wget -q -O /dev/null http://example.com/build-newyorker-photobooth.php
 */
 
 date_default_timezone_set("America/New_York");
@@ -25,7 +25,7 @@ class Feed {
 	public function __construct() {
 		$this->response = array();
 		$this->limit    = 10;
-		$this->fileName = "feed.js";
+		$this->fileName = "feed-newyorker-photobooth.js";
 	}
 
 	function Run() {
@@ -52,6 +52,7 @@ class Feed {
 
 		$json = json_encode($data, JSON_PRETTY_PRINT);
 		file_put_contents($this->fileName, $json);
+		file_put_contents("feed.js", $json); // Old, but actively used
 
 		return $json;
 	}
