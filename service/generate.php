@@ -8,6 +8,9 @@
 
 	Parses the data, and pubishes a reuced feed of about 50 items
 	* https://donohoe.io/project/feeds/photo-booth/feed.js
+
+	Relies on CRON to run daily. Example:
+	  00 00 * * * wget -q -O /dev/null http://example.com/generate.php
 */
 
 date_default_timezone_set("America/New_York");
