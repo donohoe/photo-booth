@@ -16,15 +16,17 @@ var app = {
 		var items = data.response || false;
 		if (items) {
 
-			var scrollBarWidth = this.measureScrollBar();
-
 			var html = "";
-			var realWidth = (window.innerWidth - scrollBarWidth);
+			var realWidth = (window.innerWidth - this.measureScrollBar());
 			var numPerRow = parseInt(realWidth / 250, 10);
 			var w = parseInt((realWidth / numPerRow), 10) + "px";
 			var h = w;
 
-			var tmp1 = items.slice(0,4); // Preserve the order of teh first few items
+			var tmp1 = items.slice(0, 4); // Preserve the order of the first few items...
+			tmp1.sort(function() {
+				return .5 - Math.random();
+			});
+
 			var tmp2 = items.slice(4); // but lets randomize the rest for a nice sense of freshness & discovery
 			tmp2.sort(function() {
 				return .5 - Math.random();
@@ -76,7 +78,7 @@ var app = {
 		var effect = this.randomEffect();
 		return [
 			'<a data-wow-offset="' + offset + '" data-wow-duration="' + duration + '" class="wow link ' + effect + '" href="' + item.link + '" target="_blank" style="width: '+ w +'; height: '+ h +';">',
-				'<img class="' + item.orientation + '" data-src="' + item.image + '" style="min-width: ' + w + 'px;">',
+				'<img class="' + item.orientation + '" data-src="' + item.image + '" style="min-width: ' + w + 'px;" title="' + item.title + '">',
 			'</a>'
 		].join("");
 	},
@@ -161,7 +163,7 @@ var app = {
 
 	saveToCache: function(response) {
 		localStorage.setItem("photobooth-data", JSON.stringify({
-			expiration: new Date().getTime() + 61 * 60 * 1000, // 61 minutes
+			expiration: new Date().getTime() + 6 * 60 * 60 * 1000, // 6 hours
 			responseText: response
 		}));
 	},
