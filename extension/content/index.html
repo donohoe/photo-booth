@@ -7,11 +7,20 @@
 		<link rel="stylesheet" type="text/css" href="/content/css/animate.fade.css" />
 	</head>
 	<body data-page="1" class="loading">
-		<a id="button" href="http://www.newyorker.com/culture/photo-booth/?mbid=ext_photobooth">
-			<img src="/content/img/photobooth.png" title="Photo Booth"/>
-		</a>
+		<section id="sources" class="main">
+			<div id="dd" class="wrapper-dd" tabindex="1">
+				<span id="source-name"></span>
+				<ul id="source-list" class="dropdown"></ul>
+			</div>
+		</section>
 		<div class="content" id="content"></div>
-		<div id="footer" style="display:none;"></div>
+		<div id="footer" style="opacity: 0;">
+			<h1>Photo Booth</h1>
+			<p>A look at the world through the collections of <br>great photographers and organizations</p>
+			<p id="footer-links">&nbsp;</p>
+			<div id="version"></div>
+		</div>
+		<div id="offline"></div>
 		<script src="/content/js/app.js"></script>
 	</body>
 </html>
