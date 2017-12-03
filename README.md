@@ -9,3 +9,10 @@ https://chrome.google.com/webstore/detail/photo-booth/kehannojjfniekignihdkcbgeb
 To work form the source in this repo, see Google's guide on extension development which has detailed steps:
 
 https://developer.chrome.com/extensions/getstarted#unpacked
+
+# TODO
+
+* Add updated and working feed generators
+* Explore basic analytics
+* Find more sources
+* Add a "Random" option
